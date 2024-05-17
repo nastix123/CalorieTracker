@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "by.eapp.onboarding_presentation"
-    compileSdk = 34
+    compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
-        minSdk = 28
+        minSdk = ConfigurationData.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -28,7 +28,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ConfigurationData.jvmTarget
     }
 }
 

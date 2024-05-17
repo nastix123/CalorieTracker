@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "by.eapp.calorietracker"
-    compileSdk = 34
+    compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
         applicationId = "by.eapp.calorietracker"
-        minSdk = 28
+        minSdk = ConfigurationData.minSdk
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -34,7 +34,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ConfigurationData.jvmTarget
     }
     buildFeatures {
         compose = true
