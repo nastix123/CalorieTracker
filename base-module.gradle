@@ -1,51 +1,39 @@
-plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    namespace = "by.eapp.calorietracker"
-    compileSdk = ConfigurationData.compileSdk
+    compileSdk ConfigurationData.compileSdk
 
     defaultConfig {
-        applicationId = "by.eapp.calorietracker"
-        minSdk = ConfigurationData.minSdk
-        targetSdk = ConfigurationData.targetSdk
-        versionCode = ConfigurationData.versionCode
-        versionName = ConfigurationData.versionName
+        minSdk ConfigurationData.minSdk
+        targetSdk ConfigurationData.targetSdk
+        versionCode ConfigurationData.versionCode
+        versionName ConfigurationData.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildFeatures {
+        compose true
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+
         }
     }
     compileOptions {
+        //coreLibraryDesugaringEnabled true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = ConfigurationData.jvmTarget
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
     }
 }
 
@@ -66,4 +54,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
 }
