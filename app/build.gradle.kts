@@ -8,7 +8,7 @@ android {
     compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
-        applicationId = "by.eapp.calorietracker"
+        applicationId = ConfigurationData.appId
         minSdk = ConfigurationData.minSdk
         targetSdk = ConfigurationData.targetSdk
         versionCode = ConfigurationData.versionCode
@@ -59,6 +59,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(Modules.core)
+    implementation(project(Modules.coreUi))
+    implementation(project(Modules.onboarding_presentation))
+    implementation(libs.androidx.navigation.compose)
+    implementation(project(":core"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
