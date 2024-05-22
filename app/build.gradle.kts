@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -59,11 +60,32 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(Modules.core)
+
+
+    implementation(project(Modules.core))
     implementation(project(Modules.coreUi))
     implementation(project(Modules.onboarding_presentation))
+    implementation(project(Modules.onboarding_domain))
+    implementation(project(Modules.tracker_presentation))
+    implementation(project(Modules.tracker_domain))
+    implementation(project(Modules.tracker_data))
+
+    //network
+    implementation(libs.retrofit)
+    implementation(platform(libs.okhttp.bom))
+    testImplementation(libs.mockwebserver)
+    //room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+
+
+
     implementation(libs.androidx.navigation.compose)
-    implementation(project(":core"))
+
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
